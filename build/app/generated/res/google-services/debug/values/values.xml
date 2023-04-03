@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">984639672725-ndref2upu8va5i1gohi90d3vlmktc3p1.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">984639672725</string>
+    <string name="google_api_key" translatable="false">AIzaSyD1p8qT5lHWrUWztYqMJG5V6A900Rck7dY</string>
+    <string name="google_app_id" translatable="false">1:984639672725:android:bb1698bf13d07e304c669c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD1p8qT5lHWrUWztYqMJG5V6A900Rck7dY</string>
+    <string name="google_storage_bucket" translatable="false">webrtc-cris-test.appspot.com</string>
+    <string name="project_id" translatable="false">webrtc-cris-test</string>
+</resources>
