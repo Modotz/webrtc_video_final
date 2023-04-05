@@ -1,0 +1,9 @@
+changjoopark/com/flutter_foreground_plugin/FlutterForegroundBootManager.java
+ changjoopark.com.flutter_foreground_plugin.FlutterForegroundBootManager
+changjoopark/com/flutter_foreground_plugin/FlutterForegroundService.java
+ changjoopark.com.flutter_foreground_plugin.FlutterForegroundService
+changjoopark/com/flutter_foreground_plugin/BuildConfig.java
+ changjoopark.com.flutter_foreground_plugin.BuildConfig
+changjoopark/com/flutter_foreground_plugin/FlutterForegroundPlugin.java
+ changjoopark.com.flutter_foreground_plugin.FlutterForegroundPlugin
+ changjoopark.com.flutter_foreground_plugin.FlutterForegroundPlugin$1

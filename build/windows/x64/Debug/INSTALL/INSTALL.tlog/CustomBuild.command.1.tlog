@@ -1,0 +1,10 @@
+^D:\IMI\BPN\NOTARIS\WEBRTC_VIDEO_FINAL\BUILD\WINDOWS\CMAKEFILES\4C71FE8DA03954C7A8A9C2B4F79B57E3\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

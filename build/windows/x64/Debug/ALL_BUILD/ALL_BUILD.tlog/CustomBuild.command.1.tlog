@@ -1,0 +1,10 @@
+^D:\IMI\BPN\NOTARIS\WEBRTC_VIDEO_FINAL\WINDOWS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/IMI/BPN/Notaris/webrtc_video_final/windows -BD:/IMI/BPN/Notaris/webrtc_video_final/build/windows --check-stamp-file D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

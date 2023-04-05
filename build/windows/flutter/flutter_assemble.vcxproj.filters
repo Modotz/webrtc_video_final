@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\IMI\BPN\Notaris\webrtc_video_final\build\windows\CMakeFiles\3a15ad9c7af434490a5b8955003704f6\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\IMI\BPN\Notaris\webrtc_video_final\build\windows\CMakeFiles\ea23b5358247415927df5511213d57aa\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\IMI\BPN\Notaris\webrtc_video_final\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\IMI\BPN\Notaris\webrtc_video_final\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{478FBE5C-521C-356B-B8C4-90C304DAC8D0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

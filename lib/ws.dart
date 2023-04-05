@@ -5,9 +5,16 @@ import 'package:socket_io_client/socket_io_client.dart';
 import 'package:webrtc_flutter/signaling.dart';
 import 'package:flutter/material.dart';
 
+enum VideoSource {
+  Camera,
+  Screen,
+}
+
+
 class webSocket {
   late Socket socket;
   String socketId = '';
+
 
   Map<String, dynamic> configuration = {
     'iceServers': [
@@ -49,6 +56,13 @@ class webSocket {
   String? roomId;
   String? currentRoomText;
   StreamStateCallback? onAddRemoteStream;
+
+  List<MediaStream> _remoteStreams = <MediaStream>[];
+  List<RTCRtpSender> _senders = <RTCRtpSender>[];
+  VideoSource _videoSource = VideoSource.Camera;
+  Function(MediaStream stream)? onLocalStream;
+  MediaStream? _localStream;
+  final RTCVideoRenderer _localRenderer = RTCVideoRenderer();
 
   Future<void> connectToServer() async {
     try {
@@ -175,9 +189,7 @@ class webSocket {
   void createPeer(String client_id, bool share) async {
     peerConnection = await createPeerConnection(configuration);
     registerPeerConnectionListeners();
-    localStream?.getTracks().forEach((track) {
-      peerConnection?.addTrack(track, localStream!);
-    });
+
 
     // Code for collecting ICE candidates below
     peerConnection!.onIceCandidate = (RTCIceCandidate candidate) {
@@ -211,6 +223,11 @@ class webSocket {
         remoteStream?.addTrack(track);
       });
     };
+
+    localStream?.getTracks().forEach((track) async {
+      //peerConnection?.addTrack(track, localStream!);
+      _senders.add(await peerConnection!.addTrack(track, localStream!));
+    });
 
     RTCSessionDescription offer = await peerConnection!.createOffer();
     await peerConnection!.setLocalDescription(offer);
@@ -296,13 +313,75 @@ class webSocket {
   void handleWebRTCCandidate(dynamic data) async {
     peerConnection!.addCandidate(
       RTCIceCandidate(
-        data['candidate'],
-        data['sdpMid'],
-        data['sdpMLineIndex'],
+        data['candidate']['candidate'],
+        data['candidate']['sdpMid'],
+        data['candidate']['sdpMLineIndex'],
       ),
     );
     print('handleCandidate');
   }
+
+
+  void switchCamera() {
+    print('Switch Camera');
+    if (localStream != null) {
+      var videoSender = peerConnection?.getSenders();
+      // peerConnection.getSenders()
+      //     .filter((sender) => sender.track.kind === "video")[0];
+      if (_videoSource != VideoSource.Camera) {
+        _senders.forEach((sender) {
+          if (sender.track!.kind == 'video') {
+            sender.replaceTrack(localStream!.getVideoTracks()[0]);
+          }
+        });
+        _videoSource = VideoSource.Camera;
+        onLocalStream?.call(localStream!);
+      } else {
+        Helper.switchCamera(localStream!.getVideoTracks()[0]);
+      }
+    }
+  }
+
+  void switchToScreenSharing(MediaStream stream, RTCVideoRenderer _localRenderer ) {
+    //if (_localStream != null && _videoSource != VideoSource.Screen) {
+      _senders.forEach((sender) {
+        if (sender.track!.kind == 'video') {
+          sender.replaceTrack(stream.getVideoTracks()[0]);
+        }
+      });
+      localStream=stream;
+      _localRenderer.srcObject = localStream;
+      //_videoSource = VideoSource.Screen;
+    //}
+  }
+
+  // void switchToScreenSharing() async {
+  //   // late MediaStream stream;
+  //   // final mediaConstraints = <String, dynamic>{'audio': true, 'video': true};
+  //   // stream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints);
+  //   // if (localStream != null && _videoSource != VideoSource.Screen) {
+  //   //   _senders.forEach((sender) {
+  //   //     if (sender.track!.kind == 'video') {
+  //   //       sender.replaceTrack(stream.getVideoTracks()[0]);
+  //   //     }
+  //   //   });
+  //   //   onLocalStream?.call(stream);
+  //   //   _videoSource = VideoSource.Screen;
+  //   // }
+  //
+  //   // final mediaConstraints = <String, dynamic>{'audio': true, 'video': true};
+  //   //
+  //   // try {
+  //   //   var stream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints);
+  //   //   _localStream = stream;
+  //   //   _localRenderer.srcObject = _localStream;
+  //   // } catch (e) {
+  //   //   print(e.toString());
+  //   // }
+  //
+  //
+  //
+  // }
 
   void registerPeerConnectionListeners() {
     peerConnection?.onIceGatheringState = (RTCIceGatheringState state) {

@@ -1,0 +1,28 @@
+^D:\IMI\BPN\NOTARIS\WEBRTC_VIDEO_FINAL\BUILD\WINDOWS\CMAKEFILES\3A15AD9C7AF434490A5B8955003704F6\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\src\flutter PROJECT_DIR=D:\IMI\BPN\Notaris\webrtc_video_final FLUTTER_ROOT=C:\src\flutter FLUTTER_EPHEMERAL_DIR=D:\IMI\BPN\Notaris\webrtc_video_final\windows\flutter\ephemeral PROJECT_DIR=D:\IMI\BPN\Notaris\webrtc_video_final FLUTTER_TARGET=D:\IMI\BPN\Notaris\webrtc_video_final\lib\main.dart DART_DEFINES=Zmx1dHRlci5pbnNwZWN0b3Iuc3RydWN0dXJlZEVycm9ycz10cnVl,RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\IMI\BPN\Notaris\webrtc_video_final\.dart_tool\package_config.json C:/src/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\IMI\BPN\NOTARIS\WEBRTC_VIDEO_FINAL\BUILD\WINDOWS\CMAKEFILES\EA23B5358247415927DF5511213D57AA\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\IMI\BPN\NOTARIS\WEBRTC_VIDEO_FINAL\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/IMI/BPN/Notaris/webrtc_video_final/windows -BD:/IMI/BPN/Notaris/webrtc_video_final/build/windows --check-stamp-file D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,13 @@
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/CMakeFiles/INSTALL.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/CMakeFiles/ALL_BUILD.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/CMakeFiles/ZERO_CHECK.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/flutter/CMakeFiles/flutter_wrapper_app.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/flutter/CMakeFiles/flutter_assemble.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/flutter/CMakeFiles/INSTALL.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/runner/CMakeFiles/webrtc_flutter.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/runner/CMakeFiles/INSTALL.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/runner/CMakeFiles/ALL_BUILD.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/plugins/flutter_webrtc/CMakeFiles/flutter_webrtc_plugin.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/plugins/flutter_webrtc/CMakeFiles/INSTALL.dir
+D:/IMI/BPN/Notaris/webrtc_video_final/build/windows/plugins/flutter_webrtc/CMakeFiles/ALL_BUILD.dir

@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:webrtc_flutter/ws.dart';
-import '';
+import 'screen_select_dialog.dart';
 
 class HomePage extends StatefulWidget {
   final String userType;
@@ -31,7 +30,7 @@ class HomePageState extends State<HomePage> {
   bool? hangUpState;
   bool isRemoteConnected = false;
   //TextEditingController textEditingController = TextEditingController(text: '');
-  final db = FirebaseFirestore.instance;
+
 
   //late io.Socket socket;
 
@@ -96,6 +95,42 @@ class HomePageState extends State<HomePage> {
     _remoteRenderer.dispose();
     super.dispose();
   }
+
+  Future<void> selectScreenSourceDialog(BuildContext context) async {
+    MediaStream? screenStream;
+    if (WebRTC.platformIsDesktop) {
+      final source = await showDialog<DesktopCapturerSource>(
+        context: context,
+        builder: (context) => ScreenSelectDialog(),
+      );
+      if (source != null) {
+        try {
+          var stream =
+          await navigator.mediaDevices.getDisplayMedia(<String, dynamic>{
+            'video': {
+              'deviceId': {'exact': source.id},
+              'mandatory': {'frameRate': 30.0}
+            }
+          });
+          stream.getVideoTracks()[0].onEnded = () {
+            print(
+                'By adding a listener on onEnded you can: 1) catch stop video sharing on Web');
+          };
+          screenStream = stream;
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else if (WebRTC.platformIsWeb) {
+      screenStream =
+      await navigator.mediaDevices.getDisplayMedia(<String, dynamic>{
+        'audio': false,
+        'video': true,
+      });
+    }
+    if (screenStream != null) ws?.switchToScreenSharing(screenStream, _localRenderer);
+  }
+
 
   Widget bottomNavigationDesign(context) {
     return Container(
@@ -366,49 +401,46 @@ class HomePageState extends State<HomePage> {
                         width: MediaQuery.of(context).size.width / 4,
                         child: RTCVideoView(_localRenderer, mirror: true)),
                 if (userType == 'V')
-                  Column(
+                  Row(
                     children: [
-                      StreamBuilder<QuerySnapshot>(
-                        stream: db.collection('ActiveCallers').snapshots(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height / 2,
-                              width: MediaQuery.of(context).size.width / 2,
-                              child:IconButton(
-                                  onPressed: () {
-                                    ws.joinRoom(
-                                        '2', _remoteRenderer);
-                                        setState(() {});
-                                  },
-                                  icon: Icon(Icons.call)),
-                              // child: ListView(
-                              //   children: snapshot.data!.docs.map((doc) {
-                              //     return Card(
-                              //       child: ListTile(
-                              //         onTap: () {
-                              //           // print(doc.get('id'));
-                              //           ws.joinRoom(
-                              //               doc.get('id'), _remoteRenderer);
-                              //           setState(() {});
-                              //         },
-                              //         tileColor: Colors.white70,
-                              //         leading: const Icon(Icons.perm_identity),
-                              //         title: Text(doc.get('name')),
-                              //         trailing: const Icon(Icons.call,
-                              //             color: Colors.green),
-                              //       ),
-                              //     );
-                              //   }).toList(),
-                              // ),
-                            );
-                          }
+                      TextButton(
+                        style:
+                        TextButton.styleFrom(backgroundColor: Color(0xffF18265)),
+                        onPressed: () {ws.joinRoom(
+                            '2', _remoteRenderer);
                         },
+                        child: Text(
+                          "Join Room",
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                          ),
+                        ),
                       ),
+                      TextButton(
+                        style:
+                        TextButton.styleFrom(backgroundColor: Color(0xffF18265)),
+                        onPressed: () {ws.switchCamera();
+                        },
+                        child: Text(
+                          "Switch Camera",
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        style:
+                        TextButton.styleFrom(backgroundColor: Color(0xffF18265)),
+                        onPressed: () {selectScreenSourceDialog(context);
+                        },
+                        child: Text(
+                          "Share Screen",
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+
                     ],
                   )
               ],

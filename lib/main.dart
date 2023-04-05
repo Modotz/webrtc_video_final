@@ -1,19 +1,12 @@
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'homepage.dart';
 import '';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-    apiKey: "AIzaSyD1p8qT5lHWrUWztYqMJG5V6A900Rck7dY",
-    appId: "1:984639672725:android:bb1698bf13d07e304c669c",
-    messagingSenderId: "984639672725",
-    projectId: "webrtc-cris-test",
-  ));
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }

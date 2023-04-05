@@ -4,23 +4,6 @@
             "outputFile": "D:\\IMI\\BPN\\Notaris\\webrtc_video_final\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-2\\files-2.1\\6ad2882e70130260d46e79cbdbdd7320\\browser-1.4.0\\res\\values-lv\\values-lv.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,158,257,373",
-                        "endColumns": "102,98,115,101",
-                        "endOffsets": "153,252,368,470"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "2359,2462,2561,2677",
-                        "endColumns": "102,98,115,101",
-                        "endOffsets": "2457,2556,2672,2774"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-2\\files-2.1\\371e697bd847b8f0299b1a4e3e0b40ec\\jetified-play-services-basement-18.1.0\\res\\values-lv\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -47,11 +30,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "24",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "2779",
+                        "startOffsets": "2359",
                         "endColumns": "100",
-                        "endOffsets": "2875"
+                        "endOffsets": "2455"
                     }
                 },
                 {
