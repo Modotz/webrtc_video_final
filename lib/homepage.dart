@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:webrtc_flutter/ws.dart';
 import 'screen_select_dialog.dart';
 
+
+
 class HomePage extends StatefulWidget {
   final String userType;
   const HomePage({Key? key, required this.userType}) : super(key: key);
@@ -127,6 +129,19 @@ class HomePageState extends State<HomePage> {
         'audio': false,
         'video': true,
       });
+    }else if (WebRTC.platformIsWeb) {
+      screenStream =
+      await navigator.mediaDevices.getDisplayMedia(<String, dynamic>{
+        'audio': false,
+        'video': true,
+      });
+    }else if (WebRTC.platformIsAndroid) {
+      screenStream =
+      await navigator.mediaDevices.getDisplayMedia(<String, dynamic>{
+        'audio': false,
+        'video': true,
+      });
+    }else if (WebRTC.platformIsAndroid) {
     }
     if (screenStream != null) ws?.switchToScreenSharing(screenStream, _localRenderer);
   }
